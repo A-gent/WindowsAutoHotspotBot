@@ -2,7 +2,7 @@
 AHK-based front-end handler for powershell backend enforcement of an Automated Windows Hotspot Projection (will force the Hotspot to engage if at all possible for it to be engaged (if you are connected to the internet))
 
 
-INSTALL (the first two are only necessary if you want a clean looking config file generated, or want to recompile the exe yourself. If neither apply to you, simply copy "start_hotspot.ps1", "start_hotspot_verify.ps1", and "AutoHotspotHandler.exe" to your root C:\ drive and run them, the system will auto-build you a HotSpots directoy, config file, and install a modules folder in its new directory):
+INSTALL (the first two are only necessary if you want a clean looking config file generated, or want to recompile the exe yourself. If neither apply to you, simply copy "start_hotspot.ps1", "start_hotspot_verify.ps1", and "AutoHotspotHandler.exe" to your root C:\ drive and run them, the system will auto-build you a HotSpots directory, config file, and install a modules folder in its new directory):
 
 1.) Copy the HotSpots folder to your local documents folder.
 
