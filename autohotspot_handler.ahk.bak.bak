@@ -31,25 +31,20 @@ ExitApp
 
 
 
-GLOBAL AppTitleRoot := "Chain Overflow"
-GLOBAL FolderTitleRoot := "ChainOverflow"
-; GLOBAL ConfigFileTitle := "autohotspot_handler.cfg" ;; remove the X on the end!
-GLOBAL ConfigFileTitle := "chain_core.cfg" ;; remove the X on the end!
+GLOBAL AppTitleRoot := "HotSpots (AutoHotspot Bot)"
+GLOBAL FolderTitleRoot := "HotSpots"
+GLOBAL ConfigFileTitle := "autohotspot_handler.cfg" ;; remove the X on the end!
 GLOBAL HotspotActivityLog := "hotspot_state.log"
 GLOBAL ModulesPod := "modules"
 GLOBAL Module0x001 := "pdaUptime.exe"
-GLOBAL Module0x002 := "StopWatch.exe"
 
 
 Menu, Tray, NoStandard
 Menu, Tray, Add, Settings, SettingsBTN  ; Creates a new menu item.
 Menu, Tray, Add, Open Container, OpenDirectoryRootBTN  ; Creates a new menu item.
-Menu, Tray, Add, Open Local App Folder, OpenDirectoryAppBTN  ; Creates a new menu item.
 Menu, Tray, Add  ; Creates a separator line.
 Menu, Tray, Add, Direct QuickHotspot, RunQHSThreadCall   ; Creates a new menu item.
 Menu, Tray, Add, Query PDAnet Uptime, pdaUptime_CallModuleBTN   ; Creates a new menu item.
-Menu, Tray, Add  ; Creates a separator line.
-Menu, Tray, Add, StopWatch, OpenStopWatch  ;
 Menu, Tray, Add  ; Creates a separator line.
 Menu, Tray, Add, Halt Root Threads, clampRootThreadCalls   ; Creates a new menu item.
 Menu, Tray, Add, Reboot Root Threads, reRunRootThreadCalls   ; Creates a new menu item.
@@ -69,31 +64,12 @@ Menu, Tray, Tip, %AppTitleRoot%
 config_path := A_MyDocuments . "\" . FolderTitleRoot . "\" . ConfigFileTitle
 create_config_path := A_MyDocuments . "\" . FolderTitleRoot
 
-
-GLOBAL AppFolderCallRoot := A_MyDocuments . "\" . FolderTitleRoot . "\"
-
 GLOBAL ModuleCall0x001 := A_MyDocuments . "\" . FolderTitleRoot . "\" . ModulesPod . "\" . Module0x001
-
-GLOBAL ModuleCall0x002 := A_MyDocuments . "\" . FolderTitleRoot . "\" . ModulesPod . "\" . Module0x002
 
 
 
 ; FileInstall, %A_ScriptDir%\%ModulesPod%\%Module0x001%, %create_config_path%\%ModulesPod%\%Module0x001%, 0
-; FileInstall, D:\#Manifest\#DigitalSea\AutoHotkey\_____PROJECTS______\TOOLS\2023 WINDOWS STARTUP LAUNCHER ENGINE\autohotspot_handler.cfg, C:\Users\thann\Documents\HotSpots\autohotspot_handler.cfg, 0
-; FileInstall, D:\#Manifest\#DigitalSea\AutoHotkey\_____PROJECTS______\TOOLS\2023 WINDOWS STARTUP LAUNCHER ENGINE\autohotspot_handler.cfg, C:\autohotspot_handler.cfg, 0
-FileInstall, D:\#Manifest\#DigitalSea\AutoHotkey\_____PROJECTS______\TOOLS\2023 WINDOWS STARTUP LAUNCHER ENGINE\chain_core.cfg, C:\Users\thann\Documents\HotSpots\chain_core.cfg, 0
-; FileInstall, D:\#Manifest\#DigitalSea\AutoHotkey\_____PROJECTS______\TOOLS\2023 WINDOWS STARTUP LAUNCHER ENGINE\chain_core.cfg, C:\chain_core.cfg, 0
-
-FileInstall, D:\#Manifest\#DigitalSea\AutoHotkey\_____PROJECTS______\TOOLS\2023 WINDOWS STARTUP LAUNCHER ENGINE\start_hotspot.ps1, C:\start_hotspot.ps1, 1
-FileInstall, D:\#Manifest\#DigitalSea\AutoHotkey\_____PROJECTS______\TOOLS\2023 WINDOWS STARTUP LAUNCHER ENGINE\start_hotspot_verify.ps1, C:\start_hotspot_verify.ps1, 1
-
-FileInstall, D:\#Manifest\#DigitalSea\AutoHotkey\_____PROJECTS______\TOOLS\2023 WINDOWS STARTUP LAUNCHER ENGINE\start_hotspot.ps1, C:\Users\thann\Documents\HotSpots\start_hotspot.ps1, 1
-FileInstall, D:\#Manifest\#DigitalSea\AutoHotkey\_____PROJECTS______\TOOLS\2023 WINDOWS STARTUP LAUNCHER ENGINE\start_hotspot_mine.ps1, C:\Users\thann\Documents\HotSpots\start_hotspot_mine.ps1, 1
-FileInstall, D:\#Manifest\#DigitalSea\AutoHotkey\_____PROJECTS______\TOOLS\2023 WINDOWS STARTUP LAUNCHER ENGINE\start_hotspot_default.ps1, C:\Users\thann\Documents\HotSpots\start_hotspot_default.ps1, 1
-FileInstall, D:\#Manifest\#DigitalSea\AutoHotkey\_____PROJECTS______\TOOLS\2023 WINDOWS STARTUP LAUNCHER ENGINE\start_hotspot_verify.ps1, C:\Users\thann\Documents\HotSpots\start_hotspot_verify.ps1, 1
-
 FileInstall, D:\#Manifest\#DigitalSea\AutoHotkey\_____PROJECTS______\TOOLS\2023 WINDOWS STARTUP LAUNCHER ENGINE\modules\pdaUptime.exe, C:\Users\thann\Documents\HotSpots\modules\pdaUptime.exe, 1
-FileInstall, D:\#Manifest\#DigitalSea\AutoHotkey\_____PROJECTS______\TOOLS\2023 WINDOWS STARTUP LAUNCHER ENGINE\modules\StopWatch.exe, C:\Users\thann\Documents\HotSpots\modules\StopWatch.exe, 1
 
 IniRead, ShowDebugMessages1, %config_path%, DEBUG, ShowBreakpoints, 0
 
@@ -632,8 +608,7 @@ Reload
 Return
 
 SettingsBTN:
-; Run, "notepad.exe" %A_MyDocuments%\HotSpots\autohotspot_handler.cfg
-Run, "notepad.exe" %A_MyDocuments%\HotSpots\%ConfigFileTitle%
+Run, "notepad.exe" %A_MyDocuments%\HotSpots\autohotspot_handler.cfg
     If(ShowDebugMessages="4")
     {
         MsgBox,, Settings Control Event, Executing partially hard-coded directory,
@@ -645,9 +620,6 @@ OpenDirectoryRootBTN:
 Run, explorer.exe ""%A_ScriptDir%""
 Return
 
-OpenDirectoryAppBTN:
-Run, explorer.exe ""%AppFolderCallRoot%""
-Return
 
 ExitBTN:
 ExitApp
@@ -671,11 +643,6 @@ Return
 
 pdaUptime_CallModuleBTN:
 Run, %ModuleCall0x001%
-Return
-
-
-OpenStopWatch:
-Run, %ModuleCall0x002%
 Return
 
 
